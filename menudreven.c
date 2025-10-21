@@ -23,12 +23,27 @@ void dispalay(int n ,int *arr){
     
 }
 
+void linearsearch(int key ,int n ,int *arr){
+     for (int i = 0; i <n; i++)
+     {
+        if (arr[i]==key)
+        {
+            printf("key is found in  the index: %d\n",i);
+            return;
+        }
+        
+        
+     }
+     printf("key is not found\n");
+
+}
+
 int main(){
-    int choice,n=0;
+    int choice,n=0,key;
     int arr[32];
     while(1)
     {
-        printf("1.input\n2.output\n3.exit\n");
+        printf("1.input\n2.output\n3.linear search\n4.exit\n");
         printf("Enter your choice\n");
         scanf("%d",&choice);
         switch (choice)
@@ -43,7 +58,16 @@ int main(){
             case 2:
                     dispalay(n,arr);
                     break;
-            case 3:exit(0);
+            case 3:
+                {
+                    printf("enter the key value\n");
+                    scanf("%d",&key);
+                    linearsearch(key,n,arr);
+
+                }
+
+            case 4:
+                exit(0);
             
             default: 
                 printf("enter the valid choice\n");
