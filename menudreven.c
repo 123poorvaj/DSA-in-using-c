@@ -59,12 +59,20 @@ void binarysearch(int *arr,int key,int low,int height)
     
 }
 
+void insert(int*n,int *arr,int pos,int key){
+    for(int i=*n;i>=pos-1;i--){
+        *(arr+i)=*(arr+i-1);
+    }
+    *(arr+pos-1)=key;
+    (*n)++;
+}
+
 int main(){
-    int choice,n=0,key;
+    int choice,n=0,key,pos;
     int arr[32];
     while(1)
     {
-        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.exit\n");
+        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.insret\n6.exit");
         printf("Enter your choice\n");
         scanf("%d",&choice);
         switch (choice)
@@ -94,7 +102,20 @@ int main(){
                 break;
 
             }
-            case 5:
+            case 5:{
+                printf("enter the inserted element>> ");
+                scanf("%d",&key);
+                printf("enter position to insert>> ");
+                scanf("%d",&pos);
+                if((pos<=0)|(pos>n+1)){
+                    printf("possition out of range\n");
+                    break;
+                }
+                 insert(&n,arr,pos,key);
+                 printf("insetion successfull\n");
+                 break;
+            }
+            case 6:
                 exit(0);
             
             default: 
