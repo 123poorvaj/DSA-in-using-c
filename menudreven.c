@@ -1,3 +1,4 @@
+// Online C compiler to run C program online
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -66,13 +67,20 @@ void insert(int*n,int *arr,int pos,int key){
     *(arr+pos-1)=key;
     (*n)++;
 }
+void deleteindex(int *n,int *arr,int index){
+    for(int i=index ; i<*n;i++){
+        *(arr+i) =*(arr+i+1);
+    }
+    (*n)--;
+    printf("deleted successfuly\n");
+}
 
 int main(){
-    int choice,n=0,key,pos;
+    int choice,n=0,key,pos,index;
     int arr[32];
     while(1)
     {
-        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.insret\n6.exit");
+        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.insret\n6.deletion of index\n7.exit\n");
         printf("Enter your choice\n");
         scanf("%d",&choice);
         switch (choice)
@@ -115,7 +123,17 @@ int main(){
                  printf("insetion successfull\n");
                  break;
             }
-            case 6:
+            case 6:{
+                printf("Enter index of element >>");
+                scanf("%d",&index);
+                if((index<0)|(index>n-1)){
+                    printf("index is out of range\n");
+                    break;
+                }
+                deleteindex(&n,arr,index);
+                break;
+            }
+            case 7:    
                 exit(0);
             
             default: 
