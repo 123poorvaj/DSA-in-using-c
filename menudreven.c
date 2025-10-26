@@ -23,20 +23,18 @@ void dispalay(int n ,int *arr){
     }
     
 }
-
-void linearsearch(int key ,int n ,int *arr){
+int linearsearch(int key ,int n ,int *arr){
      for (int i = 0; i <n; i++)
      {
         if (arr[i]==key)
         {
             printf("key is found in  the index: %d\n",i);
-            return;
+            return i;
         }
         
         
      }
      printf("key is not found\n");
-
 }
 void binarysearch(int *arr,int key,int low,int height)
 {   int found=0;
@@ -75,12 +73,18 @@ void deleteindex(int *n,int *arr,int index){
     printf("deleted successfuly\n");
 }
 
+int deletevalue(int *n,int *arr,int key){
+    int index=linearsearch(key,*n,arr);
+    if(index>=0) deleteindex(n,arr,index);
+    else printf("%d dose not exist in array \n",key);
+}
+
 int main(){
     int choice,n=0,key,pos,index;
     int arr[32];
     while(1)
     {
-        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.insret\n6.deletion of index\n7.exit\n");
+        printf("1.input\n2.output\n3.linear search\n4.binar ysearch \n5.insret\n6.deletion of index\n7. delete using value \n8.exit\n");
         printf("Enter your choice\n");
         scanf("%d",&choice);
         switch (choice)
@@ -133,8 +137,14 @@ int main(){
                 deleteindex(&n,arr,index);
                 break;
             }
-            case 7:    
-                exit(0);
+            case 7:{
+                printf("enter value to delete>>");
+                scanf("%d",&key);
+                deletevalue(&n,arr,key);
+                break;
+
+            }    
+            case 8: exit(0);
             
             default: 
                 printf("enter the valid choice\n");
